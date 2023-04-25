@@ -1,0 +1,59 @@
+<div class="table-responsive container ">
+    <h1 class="text-center">User Management</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Action</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Gender</th>
+                <th>phone</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let row of usersData.users">
+                <tr>
+                    <td (click)="dataShow(row)">
+                        <i *ngIf="row.isExpand" class="bi bi-chevron-down"></i>
+                        <i *ngIf="!row.isExpand" class="bi-chevron-up"></i>
+                    </td>
+                    <td>{{ row.firstName }}</td>
+                    <td>{{ row.lastName }}</td>
+                    <td>{{ row.gender }}</td>
+                    <td>{{ row.phone }}</td>
+
+                </tr>
+                <tr *ngIf="row.isExpand">
+                    <td colspan="4">
+                        <form action="" [formGroup]="user">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="">First Name</label>
+                                    <input type="text" class="form-control" formControlName="firstName">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="">Last Name</label>
+                                    <input type="text" class="form-control" formControlName="maidenName">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="">Gender</label>
+                                    <input type="text" class="form-control" formControlName="gender">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="">Contact</label>
+                                    <input type="text" class="form-control" formControlName="phone">
+                                </div>
+                                <div class="col-md-3 mt-3">
+                                    <button class="btn btn-primary" [disabled]="loading" (click)="showSpinner()"><i class="fa"
+                                            [ngClass]="{'fa-spin fa-spinner': loading,}"></i> Submit </button>&nbsp;&nbsp;
+                                    <button class="btn btn-dark">Cancel</button>
+                                </div>
+                            </div>
+            
+                        </form>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>
